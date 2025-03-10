@@ -2,7 +2,10 @@
 
 source /cvmfs/cms.cern.ch/cmsset_default.sh
 export SCRAM_ARCH=slc7_amd64_gcc700
-[ -z "${EVENTS}" ] && export EVENTS=10
+[ -z "$1" ] && EVENTS=10 || EVENTS="$1"
+[ -z "$2" ] && UPLOAD="" || UPLOAD="/eos/user/l/legao/MiniAODStore/V0/2018/MC/HplusToCB_M-75_TuneCP5_13TeV-madgraph-pythia8/HIG-RunIISummer20UL18wmLHEGEN-08760/$2.root"
+echo "Events: ${EVENTS}"
+echo "Upload: ${UPLOAD}"
 
 voms-proxy-info || exit
 
@@ -32,3 +35,5 @@ cmsDriver.py  --eventcontent AODSIM --customise Configuration/DataProcessing/Uti
 
 enter CMSSW_10_6_20
 cmsDriver.py  --eventcontent MINIAODSIM --customise Configuration/DataProcessing/Utils.addMonitoring --datatier MINIAODSIM --conditions 106X_upgrade2018_realistic_v16_L1v1 --step PAT --procModifiers run2_miniAOD_UL --geometry DB:Extended --era Run2_2018 --python_filename HIG-RunIISummer20UL18MiniAODv2-08147_1_cfg.py --fileout file:HIG-RunIISummer20UL18MiniAODv2-08147.root --filein file:HIG-RunIISummer20UL18RECO-08147.root --runUnscheduled --mc -n $EVENTS || exit $?
+
+[ ! -z "${UPLOAD}" ] && xrdcp -f HIG-RunIISummer20UL18MiniAODv2-08147.root "root://eosuser.cern.ch/${UPLOAD}"

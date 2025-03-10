@@ -20,4 +20,4 @@ else
 fi
 # Run in singularity container
 export SINGULARITY_CACHEDIR="/tmp/$(whoami)/singularity"
-singularity run --home $PWD:$PWD /cvmfs/unpacked.cern.ch/registry.hub.docker.com/cmssw/$CONTAINER_NAME $(echo $(pwd)/HIG-RunIISummer20UL18wmLHEGEN-08760_all_test.sh)
+singularity run --home $PWD:$PWD /cvmfs/unpacked.cern.ch/registry.hub.docker.com/cmssw/$CONTAINER_NAME $(echo $(pwd)/HIG-RunIISummer20UL18wmLHEGEN-08760_all_test.sh) "$@"
