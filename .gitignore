@@ -1,0 +1,6 @@
+CMSSW_*/
+HIG-RunIISummer*
+!HIG-RunIISummer20UL18wmLHEGEN-08760_all.sh
+!HIG-RunIISummer20UL18wmLHEGEN-08760_all_test.sh
+.dasmaps/
+.mg5/
