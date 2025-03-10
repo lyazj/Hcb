@@ -1,9 +1,5 @@
-CMSSW_*/
-HIG-RunIISummer*
-!HIG-RunIISummer20UL18wmLHEGEN-08760_all.jdl
-!HIG-RunIISummer20UL18wmLHEGEN-08760_all.sh
-!HIG-RunIISummer20UL18wmLHEGEN-08760_all_test.sh
 x509up
-log/
+Hcb/
+*.log
 .dasmaps/
 .mg5/
