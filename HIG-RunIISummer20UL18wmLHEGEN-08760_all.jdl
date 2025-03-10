@@ -4,11 +4,11 @@ Executable = x509run
 
 +ProjectName = "cms.org.cern"
 #+JobFlavour = "tomorrow"
-+MaxRuntime = 172800
++MaxRuntime = 10800
 
 X509UP = x509up
 PROG = HIG-RunIISummer20UL18wmLHEGEN-08760_all.sh
-NEVENT = 1000
+NEVENT = 100
 Arguments = $(X509UP) bootstrap $(PROG) $(NEVENT) $(ProcId)
 
 request_cpus = 1
@@ -28,4 +28,4 @@ on_exit_hold         = (ExitBySignal == True) || (ExitCode != 0)
 on_exit_hold_reason  = strcat("Job held by ON_EXIT_HOLD due to ", ifThenElse((ExitBySignal == True), strcat("exit signal ", ExitSignal), strcat("exit code ", ExitCode)), ".")
 periodic_release     = (NumJobStarts < 3) && ((CurrentTime - EnteredCurrentStatus) > 60*60)
 
-Queue 1000
+Queue 10000
