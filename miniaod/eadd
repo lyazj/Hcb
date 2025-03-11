@@ -1,0 +1,18 @@
+#!/bin/bash
+
+parse-path () {
+    PARSED_PATH="$1"
+    [ "${PARSED_PATH:0:7}" = "root://" ] || PARSED_PATH="file:${PARSED_PATH}"
+}
+
+parse-path "$1"
+OUTPUT="${PARSED_PATH}"
+shift
+while [ ! -z "$1" ]; do
+    parse-path "$1"
+    INPUT="${INPUT}${PARSED_PATH},"
+    shift
+done
+INPUT="${INPUT:0:-1}"
+
+exec ./miniexec edmCopyPickMerge inputFiles="${INPUT}" outputFile="${OUTPUT}"

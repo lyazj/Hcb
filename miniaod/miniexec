@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [ ! "${SINGULARITY_NAME}" = "el7:x86_64" ]; then
+    cmssw-el7 --command-to-run "$0" "$@"
+fi
+
+pushd /afs/cern.ch/user/l/legao/Hcb/Hcb/CMSSW_10_6_20/src &>/dev/null
+cmsenv
+popd &>/dev/null
+[ ! -z "$*" ] && exec "$@" || exec /bin/bash
