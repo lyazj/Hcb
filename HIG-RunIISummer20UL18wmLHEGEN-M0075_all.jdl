@@ -7,7 +7,7 @@ Executable = x509run
 +MaxRuntime = 10800
 
 X509UP = x509up
-PROG = HIG-RunIISummer20UL18wmLHEGEN-08760_all.sh
+PROG = HIG-RunIISummer20UL18wmLHEGEN-M0075_all.sh
 NEVENT = 100
 Arguments = $(X509UP) bootstrap $(PROG) $(NEVENT) $(ProcId)
 
