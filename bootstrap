@@ -1,6 +1,6 @@
 #!/bin/bash
 
-git clone --branch=main --depth=1 file:///afs/cern.ch/user/l/legao/Hcb Hcb
+git clone --branch=main --depth=1 https://github.com/lyazj/Hcb Hcb
 cd Hcb
 PROG="$(readlink -f "$1")"
 shift 1

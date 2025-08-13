@@ -16,7 +16,7 @@ voms-proxy-info
 
 # Set environment variable $HOME.
 # This is required by DAS and other libraries.
-export HOME=/afs/cern.ch/user/l/legao
+export HOME=/afs/cern.ch/user/${USER:0:1}/${USER}
 
 # Turn to user-specified program.
 PROG="$(readlink -f "$2")"
