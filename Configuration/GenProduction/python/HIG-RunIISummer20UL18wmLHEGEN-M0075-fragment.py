@@ -2,7 +2,7 @@ import os
 import FWCore.ParameterSet.Config as cms
 
 externalLHEProducer = cms.EDProducer("ExternalLHEProducer",
-    args = cms.vstring(os.path.abspath(os.path.dirname(__file__)) + '/ChargedHiggsToCB_M075_slc7_amd64_gcc700_CMSSW_10_6_19_tarball.tar.xz'),
+    args = cms.vstring(os.path.abspath(os.path.dirname(__file__)) + '/ChargedHiggsToCB_M075_slc7_amd64_gcc700_CMSSW_10_6_19_tarball.tar'),
     nEvents = cms.untracked.uint32(5000),
     numberOfParameters = cms.uint32(1),
     outputFile = cms.string('cmsgrid_final.lhe'),
