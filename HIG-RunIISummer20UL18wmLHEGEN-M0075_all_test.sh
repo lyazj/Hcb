@@ -19,14 +19,14 @@ enter () {
 }
 
 enter CMSSW_10_6_30_patch1
-cmsDriver.py Configuration/GenProduction/python/HIG-RunIISummer20UL18wmLHEGEN-M0075-fragment.py --eventcontent RAWSIM,LHE --customise Configuration/DataProcessing/Utils.addMonitoring --datatier GEN,LHE --conditions 106X_upgrade2018_realistic_v4 --beamspot Realistic25ns13TeVEarly2018Collision --customise_commands process.source.numberEventsInLuminosityBlock="cms.untracked.uint32(100)" --step LHE,GEN --geometry DB:Extended --era Run2_2018 --python_filename HIG-RunIISummer20UL18wmLHEGEN-M0075_1_cfg.py --fileout file:HIG-RunIISummer20UL18wmLHEGEN-M0075.root --mc -n $EVENTS || exit $?
+cmsDriver.py Configuration/GenProduction/python/HIG-RunIISummer20UL18wmLHEGEN-M0075-fragment.py --eventcontent RAWSIM,LHE --customise Configuration/DataProcessing/Utils.addMonitoring --datatier GEN,LHE --conditions 106X_upgrade2018_realistic_v4 --beamspot Realistic25ns13TeVEarly2018Collision --customise_commands 'process.RandomNumberGeneratorService.externalLHEProducer.initialSeed=int('$[$2+1]')\nprocess.source.numberEventsInLuminosityBlock=cms.untracked.uint32(100)' --step LHE,GEN --geometry DB:Extended --era Run2_2018 --python_filename HIG-RunIISummer20UL18wmLHEGEN-M0075_1_cfg.py --fileout file:HIG-RunIISummer20UL18wmLHEGEN-M0075.root --mc -n $EVENTS || exit $?
 
 enter CMSSW_10_6_17_patch1
 cmsDriver.py --eventcontent RAWSIM --customise Configuration/DataProcessing/Utils.addMonitoring --datatier GEN-SIM --conditions 106X_upgrade2018_realistic_v11_L1v1 --beamspot Realistic25ns13TeVEarly2018Collision --step SIM --geometry DB:Extended --era Run2_2018 --python_filename HIG-RunIISummer20UL18SIM-08147_1_cfg.py --fileout file:HIG-RunIISummer20UL18SIM-08147.root --filein file:HIG-RunIISummer20UL18wmLHEGEN-M0075.root --runUnscheduled --mc -n $EVENTS || exit $?
 
 enter CMSSW_10_6_17_patch1
 cmsDriver.py --eventcontent PREMIXRAW --customise Configuration/DataProcessing/Utils.addMonitoring --datatier GEN-SIM-DIGI --conditions 106X_upgrade2018_realistic_v11_L1v1 --step DIGI,DATAMIX,L1,DIGI2RAW --procModifiers premix_stage2 --geometry DB:Extended --datamix PreMix --era Run2_2018 --python_filename HIG-RunIISummer20UL18DIGIPremix-08128_1_cfg.py --fileout file:HIG-RunIISummer20UL18DIGIPremix-08128.root --filein file:HIG-RunIISummer20UL18SIM-08147.root --pileup_input "dbs:/Neutrino_E-10_gun/RunIISummer20ULPrePremix-UL18_106X_upgrade2018_realistic_v11_L1v1-v2/PREMIX" --runUnscheduled --mc -n $EVENTS --no_exec || exit $?
-#./patch_premix_inputs.py HIG-RunIISummer20UL18DIGIPremix-08128_1_cfg.py HIG-RunIISummer20UL18DIGIPremix-08128_1_cfg.patch
+./patch_premix_inputs.py HIG-RunIISummer20UL18DIGIPremix-08128_1_cfg.py RunIISummer20ULPrePremix-UL18_106X_upgrade2018_realistic_v11_L1v1-v2.py.patch
 cmsRun HIG-RunIISummer20UL18DIGIPremix-08128_1_cfg.py || exit $?
 
 enter CMSSW_10_2_16_UL
