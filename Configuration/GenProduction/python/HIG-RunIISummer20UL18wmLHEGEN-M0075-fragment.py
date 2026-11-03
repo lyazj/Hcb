@@ -24,9 +24,23 @@ generator = cms.EDFilter("Pythia8ConcurrentHadronizerFilter",
         pythia8CommonSettingsBlock,
         pythia8CP5SettingsBlock,
         pythia8PSweightsSettingsBlock,
+        JetMatchingParameters = cms.vstring(
+            'JetMatching:setMad = off',
+            'JetMatching:scheme = 1',
+            'JetMatching:merge = on',
+            'JetMatching:jetAlgorithm = 2',
+            'JetMatching:etaJetMax = 5.',
+            'JetMatching:coneRadius = 1.',
+            'JetMatching:slowJetPower = 1',
+            'JetMatching:qCut = 20.',
+            'JetMatching:nQmatch = 5',
+            'JetMatching:nJetMax = 3',
+            'JetMatching:doShowerKt = off',
+        ),
         parameterSets = cms.vstring('pythia8CommonSettings',
                                     'pythia8CP5Settings',
                                     'pythia8PSweightsSettings',
+                                    'JetMatchingParameters',
                                     )
     )
 )
